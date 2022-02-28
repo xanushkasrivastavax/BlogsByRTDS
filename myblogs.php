@@ -131,11 +131,11 @@ font-family: 'Roboto Serif', sans-serif;
             </p>
             <br>
             <div style="text-align: right;">
-                <a href="edit.php?body=<?php echo $row['id']; ?>" class="btn btn-light btn-sm ">Edit</a>
+                <a href="edit.php?body=<?php echo $row['id']; ?>" class="btn btn-primary ">Edit</a>
             </div>
             <div class="text-align">
                     <a href="comments.php?id=<?php echo $row['id'] ?>" style="text-decoration: none;color:black">
-                        <span class="btn btn-light btn-sm mb-3">COMMENTS</span></a><br>
+                        <span class="btn btn-primary  mb-3">COMMENTS</span></a><br>
                 </div>
             <hr>
             <?php } ?>

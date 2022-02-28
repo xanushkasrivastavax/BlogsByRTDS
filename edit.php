@@ -148,7 +148,7 @@ font-family: 'Roboto Serif', sans-serif;
             <textarea  class="form-control bg-light text-black my-3" name="blog" placeholder="Write your blog"
             required> <?php echo $blog; ?></textarea>
             <div style="text-align: right;">
-                <button type="submit" class="btn btn-dark btn-sm" name="save">SAVE</button>
+                <button type="submit" class="btn btn-dark btn-sm" name="save">EDIT</button>
                 <button type="submit" class="btn btn-danger btn-sm ml-50" name="delete">Delete</button>
             </div>
            
@@ -158,7 +158,7 @@ font-family: 'Roboto Serif', sans-serif;
     <hr>
     <footer class="container">
     <p class="float-end"><a href="#">Back to top</a></p>
-    <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <p>&copy; 2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
   </footer>
     
     <script src="" async defer></script>

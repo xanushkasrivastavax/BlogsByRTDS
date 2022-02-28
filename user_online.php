@@ -1,6 +1,23 @@
 <?php
 require('db.php');
 require('functions.php');
+// $session = session_id();
+// $time = time();
+// $time_out_in_seconds = 300;
+// $time_out = $time - $time_out_in_seconds;
+// $sql= "SELCT * FROM users_online WHERE $session = '$session' ";
+// $send_query = mysqli_query($con, $sql);
+// $count = mysqli_num_rows($send_query);
+// if($count == NULL)
+// {
+//   mysqli_query($con,"INSERT INTO users_online(session,time) VALUES('$session','$time')");
+// }
+// else{
+//   mysqli_query($con,"UPDATE users_online SET time ='$time' WHERE $session='$session'");
+// }
+// $user_online_query =  mysqli_query($con,"SELECT * FROM users_online WHERE time >'$time_out'");
+// $count_user = mysqli_num_rows($user_online_query);
+
 
 if (isset($_GET['type']) && $_GET['type'] != '') {
     $type = get_safe_value($con, $_GET['type']);
@@ -101,9 +118,10 @@ font-family: 'Roboto Serif', sans-serif;
           <li class="nav-item">
             <a class="nav-link" href="login.php">Login</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Dashboard</a>
-          </li>
+          
+          <!-- <li class="nav-item">
+            <a class="nav-link"> Users Online :<?php echo $count_user; ?></a>
+          </li> -->
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

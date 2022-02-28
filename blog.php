@@ -84,9 +84,9 @@ font-family: 'Roboto Serif', sans-serif;
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="edit_profile.php">Edit Profile</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="user_online.php">Users online</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="logout.php">Logout</a>
           </li>
@@ -180,27 +180,66 @@ font-family: 'Roboto Serif', sans-serif;
       <a href="create.php" class="btn btn-outline-dark">Create a new post</a>
     </div>
  
+    <div class="container">
+
+<div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
     
-  <div class="row mb-5">
+  <!-- <div class="row mb-5"> -->
   <?php
                 $i = 1;
                 while ($q = mysqli_fetch_assoc($res)) { ?>
-      <div class="col-4 d-flex justify-content-center align-items-center">
+                <h2>
+            <a href="comments.php?id=<?php echo $q['id']; ?>"><?php echo $q['blog_title']; ?></a>
+        </h2>
+        <p><?php echo $q['blog_content']; ?></p>
+        <a class="btn btn-primary" href="comments.php?id=<?php echo $q['id'] ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+        <hr>
+
+      <!-- <div class="col-4 d-flex justify-content-center align-items-center">
         <div class="card text-black bg-light mt-5">
          <div class="card-body" style="width: 18rem">
          <h5 class="card-title"><?php echo $q['blog_title']; ?></h5>
          <p class="card-text"><?php echo $q['blog_content']; ?></p>
-         <!-- <a href="view.php?id=<?php echo $q['id']?>" class="btn btn-dark mb-3">Read More <span class="text-danger">&rarr;</span></a> -->
-         <div class="text-align">
+          <a href="view.php?id=<?php echo $q['id']?>" class="btn btn-dark mb-3">Read More <span class="text-danger">&rarr;</span></a> -->
+         <!-- <div class="text-align">
                     <a href="comments.php?id=<?php echo $q['id'] ?>" style="text-decoration: none;color:black">
                         <span class="btn btn-dark mb-3">COMMENTS</span></a><br>
                 </div>
          </div>
         </div>
-      </div>
+      </div>  -->
       <?php }?>
     </div>
+    
+    <div class="col-md-4">
+
+
+
+<!-- Blog Search Well -->
+<div class="well">
+    <h4>Blog Search</h4>
+    <form action="search.php" method="POST">
+    <div class="input-group">
+        <input name="search" type="text" class="form-control">
+        <span class="input-group-btn">
+            <button name="submit" class="btn btn-default" type="submit">
+                <span class="glyphicon glyphicon-search"></span>
+        </button>
+        </span>
     </div>
+    </form> <!--search form-->
+    <!-- /.input-group -->
+</div>
+<div class="well">
+    <h4>Blogs by RTDS</h4>
+    <p>Add your posts and share your thoughts</p>
+</div>
+</div>
+
 
     <hr class="featurette-divider">
   <!-- FOOTER -->

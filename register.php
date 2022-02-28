@@ -316,6 +316,44 @@ a {
       </div>
     </div>
   </div>
+  <script>
+        function clearerror() {
+            document.getElementById('fname').innerHTML = "";
+            document.getElementById('femail').innerHTML = "";
+            document.getElementById('fphone').innerHTML = "";
+            document.getElementById('psw').innerHTML = "";
+        }
+
+        function seterror(id, error) {
+            document.getElementById(id).innerHTML = error;
+        }
+
+        function validation() {
+            clearerror();
+            let validate = true;
+            let name = document.forms['form1']['name'].value;
+            if (name.length < 4) {
+                seterror('fname', 'Invalid name');
+                validate = false;
+            }
+            let email = document.forms['form1']['email'].value;
+            if (email.length < 10) {
+                seterror('femail', 'Invalid email');
+                validate = false;
+            }
+            let phone = document.forms['form1']['phone'].value;
+            if (phone.length != 10) {
+                seterror('fphone', 'Invalid phone number');
+                validate = false;
+            }
+            let password = document.forms['form1']['password'].value;
+            if (password.length < 8) {
+                seterror('psw', 'Required minimum 8 characters');
+                validate = false;
+            }
+            return validate;
+          }
+        </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
