@@ -6,9 +6,10 @@ $session = session_id();
 $time = time();
 $time_out_in_seconds = 300;
 $time_out = $time - $time_out_in_seconds;
-$sql= "SELCT * FROM users_online WHERE session = '$session'";
+$sql= "SELECT * FROM users_online WHERE session = '$session'";
 $send_query = mysqli_query($con, $sql);
-$count = mysqli_num_rows($send_query);
+die("QUERY FAILED". $send_query);
+// $count = mysqli_num_rows($send_query);
 if($count == NULL)
 {
   mysqli_query($con,"INSERT INTO users_online(session,time) VALUES('$session','$time')");

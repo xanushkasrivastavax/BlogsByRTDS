@@ -163,7 +163,6 @@ font-family: 'Roboto Serif', sans-serif;
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <!-- <th>Blog Name</th> -->
                             <th>status</th>
                         </tr>
                     </thead>
