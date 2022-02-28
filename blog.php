@@ -108,9 +108,9 @@ font-family: 'Roboto Serif', sans-serif;
              <li class="nav-item">
             <a class="nav-link"> Users Online :<?php echo $count_user; ?></a>
           </li>
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="user_online.php">Users online</a>
-          </li> -->
+          </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="logout.php">Logout</a>
           </li>
