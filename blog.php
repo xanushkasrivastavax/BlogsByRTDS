@@ -7,6 +7,27 @@ if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
     header('location:login.php');
 }
 ?>
+<?php
+require('functions.php');
+global $con;
+$session = session_id();
+$time = time();
+$time_out_in_seconds = 300;
+$time_out = $time - $time_out_in_seconds;
+$sql= "SELECT * FROM users_online WHERE session = '$session'";
+$send_query = mysqli_query($con, $sql);
+// die("QUERY FAILED". $send_query);
+$count = mysqli_num_rows($send_query);
+if($count == NULL)
+{
+  mysqli_query($con,"INSERT INTO users_online(session,time) VALUES('$session','$time')");
+}
+else{
+  mysqli_query($con,"UPDATE users_online SET time ='$time' WHERE $session='$session'");
+}
+$users_online_query =  mysqli_query($con,"SELECT * FROM users_online WHERE time >'$time_out'");
+$count_user = mysqli_num_rows($users_online_query);
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -83,6 +104,9 @@ font-family: 'Roboto Serif', sans-serif;
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="edit_profile.php">Edit Profile</a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link"> Users Online :<?php echo $count_user; ?></a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="user_online.php">Users online</a>

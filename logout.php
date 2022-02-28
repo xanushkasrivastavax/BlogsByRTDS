@@ -1,7 +1,7 @@
 <?php
 require('db.php');
 $username = $_SESSION['USER_USERNAME'];
-$sql = "update `users` set status = '0' where email = '$username'";
+$sql = "update `users` set status = 0 where email = '$username'";
 $data = "";
 mysqli_query($con, $sql);
 if (isset($_GET['Message'])) {

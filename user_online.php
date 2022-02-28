@@ -22,6 +22,9 @@ require('functions.php');
 if (isset($_GET['type']) && $_GET['type'] != '') {
     $type = get_safe_value($con, $_GET['type']);
     if ($type == 'status') {
+      $time = time();
+      $time_out_in_seconds=300;
+      $time_out=$time - $time_out_in_seconds;
         $operation = get_safe_value($con, $_GET['operation']);
         $id = get_safe_value($con, $_GET['id']);
         if ($operation == 'active') {
