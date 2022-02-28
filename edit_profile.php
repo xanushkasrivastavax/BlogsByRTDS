@@ -16,11 +16,13 @@ if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
         $query = "update users set name = '$name',phone = '$phone',email = '$email',password = '$password' where id =$id";
         mysqli_query($con, $query);
         if ($email != $oldEmail) {
-            $msg = urldecode("Login Again With New Email");
+          $sql = "update `users` set status = 0 where email = '$username'";
+          $data = "";
+          mysqli_query($con, $sql);
             header('location:logout.php?Message=' . $msg);
         } else {
             $msg = urldecode("Profile Updated Successfully");
-            header('location:profile.php?Message=' . $msg);
+            header('location:edit_profile.php?Message=' . $msg);
         }
     } elseif (isset($_POST['cancel'])) {
         header('location:blog.php');
