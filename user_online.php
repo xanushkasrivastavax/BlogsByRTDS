@@ -5,7 +5,7 @@ require('functions.php');
 // $time = time();
 // $time_out_in_seconds = 300;
 // $time_out = $time - $time_out_in_seconds;
-// $sql= "SELCT * FROM users_online WHERE $session = '$session' ";
+// $sql= "SELECT * FROM users_online WHERE $session = '$session' ";
 // $send_query = mysqli_query($con, $sql);
 // $count = mysqli_num_rows($send_query);
 // if($count == NULL)
@@ -61,6 +61,8 @@ if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
     <!--Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
    <!--Favicon-->
+   <link rel="icon" type="favicon.ico" href="favicon.ico">
+   <link rel="stylesheet" href="carousel.css">
    <link rel="icon" type="favicon.ico" href="favicon.ico">
    <link rel="stylesheet" href="carousel.css">
    <!--Google Fonts-->
@@ -119,17 +121,17 @@ font-family: 'Roboto Serif', sans-serif;
             <a class="nav-link active" aria-current="page" href="blog.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.php">Login</a>
+            <a class="nav-link disabled" href="login.php">Login</a>
           </li>
           
           <!-- <li class="nav-item">
             <a class="nav-link"> Users Online :<?php echo $count_user; ?></a>
           </li> -->
         </ul>
-        <form class="d-flex">
+        <!-- <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        </form> -->
       </div>
     </div>
   </nav>

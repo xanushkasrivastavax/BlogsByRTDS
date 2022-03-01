@@ -17,7 +17,7 @@ if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
             $comment = $_POST['comment_content'];
             $query = "insert into `comments`(user_id,blog_id,comment_content,comment_date) values('$user_id','$data','$comment',now())";
             mysqli_query($con, $query);
-            header('location:blog.php');
+            header('location:comments.php');
         }
     } else {
         header('location:blog.php');
@@ -84,6 +84,9 @@ font-family: 'Roboto Serif', sans-serif;
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="blog.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="myblogs.php">View and Edit your Blogs</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="login.php">Login</a>
@@ -158,7 +161,8 @@ font-family: 'Roboto Serif', sans-serif;
 </div>
         <hr>
             <h3 class="text-center">Comment Section</h3>
-            <div class="media">
+            <hr>
+            <div class="media mb-3">
            
                 <?php
                 $lastcol = 0;
@@ -167,7 +171,7 @@ font-family: 'Roboto Serif', sans-serif;
                     
                 ?>
               
-              <div class="media-body">
+              <div class="media-body mb-3">
                     
                         <?php
                             $id = $rows['user_id'];
@@ -178,11 +182,19 @@ font-family: 'Roboto Serif', sans-serif;
                             ?>
                    <span>
                             <?php echo $rows['comment_content']; ?></span>
-                  
+                  <hr>
                 <?php } ?>
             </tbody>
         </table>
     </form>
+    <hr class="featurette-divider">
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-end"><a href="#">Back to top</a></p>
+    <p>&copy; 2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+  </footer>
+</main>
+
 </body>
 
 </html>

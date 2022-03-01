@@ -100,7 +100,7 @@ font-family: 'Roboto Serif', sans-serif;
             <a class="nav-link active" aria-current="page" href="myblogs.php">My Blogs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.php">Login</a>
+            <a class="nav-link active" href="login.php">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="edit_profile.php">Edit Profile</a>
@@ -269,7 +269,7 @@ font-family: 'Roboto Serif', sans-serif;
   <!-- FOOTER -->
   <footer class="container">
     <p class="float-end"><a href="#">Back to top</a></p>
-    <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <p>&copy; 2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
   </footer>
 </main>
 

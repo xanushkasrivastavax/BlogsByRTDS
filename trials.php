@@ -220,7 +220,7 @@ font-family: 'Roboto Serif', sans-serif;
                 $i = 1;
                 while ($q = mysqli_fetch_assoc($res)) { 
       
-                while($r = mysqli_fetch_assoc($try)) {?>
+                $r = mysqli_fetch_assoc($try)?>
                 <h2>
             <a href="comments.php?id=<?php echo $q['id']; ?>"><?php echo $q['blog_title']; ?></a>
         </h2>
@@ -229,7 +229,7 @@ font-family: 'Roboto Serif', sans-serif;
           
             <h3>
             <a href="#">By <?php echo $r['name']; ?></a>
-            <?php }?>
+            
         </h3>
         <p><?php echo $q['blog_content']; ?></p>
         <a class="btn btn-primary" href="comments.php?id=<?php echo $q['id'] ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>

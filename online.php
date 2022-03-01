@@ -17,7 +17,7 @@ if($count == NULL)
 else{
   mysqli_query($con,"UPDATE users_online SET time ='$time' WHERE $session='$session'");
 }
-$users_online_query =  mysqli_query($con,"SELECT * FROM users_online WHERE time >'$time_out'");
+$users_online_query =  mysqli_query($con,"SELECT * FROM users_online WHERE time > '$time_out'");
 $count_user = mysqli_num_rows($users_online_query);
 ?>
 <!DOCTYPE html>
