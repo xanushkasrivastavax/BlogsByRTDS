@@ -4,11 +4,11 @@ $msg = "";
 if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
     $data = $_SESSION['USER_USERNAME'];
     $id_query = "select id from `users` where email='$data' ";
-    $res = mysqli_query($con, $id_query);
+    $res = mysqli_query($connection, $id_query);
     $set = mysqli_fetch_assoc($res);
     $id = $set['id'];
     $sql = "select * from `blogs` where user_id = '$id' ";
-    $res = mysqli_query($con, $sql);
+    $res = mysqli_query($connection, $sql);
     if (mysqli_num_rows($res) < 1) {
         $msg = "You Have Not Created Any Blog Till Now!";
     }
@@ -73,9 +73,11 @@ font-family: 'Roboto Serif', sans-serif;
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="blog.php">Home</a>
           </li>
-          
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+            <a class="nav-link active" aria-current="page" href="edit_profile.php">Edit Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout.php">Logout</a>
           </li>
         </ul>
      

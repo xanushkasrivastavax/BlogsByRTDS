@@ -8,10 +8,10 @@ if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
     header('location:index.php');
 }
 if (isset($_POST['submit'])) {
-    $email = get_safe_value($con, $_POST['email']);
-    $password = get_safe_value($con, $_POST['password']);
+    $email = get_safe_value($connection, $_POST['email']);
+    $password = get_safe_value($connection, $_POST['password']);
     $sql = "select * from `users` where email = '$email'";
-    $res = mysqli_query($con, $sql);
+    $res = mysqli_query($connection, $sql);
     $count = mysqli_num_rows($res);
     // echo "$res";
   
@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['USER_LOGIN'] = 'yes';
                 $_SESSION['USER_USERNAME'] = $email;
                 $sql = "update `users` set status = '1' where email = '$email'";
-                mysqli_query($con, $sql);
+                mysqli_query($connection, $sql);
                 header('location:index.php');
             }
        

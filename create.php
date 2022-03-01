@@ -5,14 +5,14 @@ if(isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN']!=''){
     if(isset($_POST['save'])){
         $data = $_SESSION['USER_USERNAME'];
         $sql = "select id from `users` where email = '$data '";
-        $res = mysqli_query($con,$sql);
+        $res = mysqli_query($connection,$sql);
         if(mysqli_num_rows($res) > 0){
             $set = mysqli_fetch_assoc($res);
             $id = $set['id'];
-            $name = get_safe_value($con, $_POST['name']);
-            $blog= get_safe_value($con, $_POST['blog']);
+            $name = get_safe_value($connection, $_POST['name']);
+            $blog= get_safe_value($connection, $_POST['blog']);
             $sql = "insert into `blogs` (`user_id`, `blog_title`, `blog_content`) VALUES ('$id', '$name', '$blog') ";
-            mysqli_query($con,$sql);
+            mysqli_query($connection,$sql);
             header('location:blog.php');
         }else{
             header('location:login.php');
@@ -129,7 +129,7 @@ font-family: 'Roboto Serif', sans-serif;
             <input type="text" placeholder="Enter Your Blog Name" name="name"class="form-control  bg-light text-black my-3 text-center" style="margin-top:2rem" required>
             <textarea  class="form-control bg-light text-black my-3" name="blog" placeholder="Write your blog"
             required></textarea>
-            <button type="submit" class="btn btn-dark" name="save">SAVE</button>
+            <button type="submit" class="btn btn-dark" name="save">POST</button>
         </div>
     </form>
     </div>

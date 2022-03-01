@@ -4,21 +4,21 @@ require('functions.php');
 if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
     $user_email = $_SESSION['USER_USERNAME'];
     $sql = "select * from `users` where email='$user_email' ";
-    $res = mysqli_fetch_assoc(mysqli_query($con, $sql));
+    $res = mysqli_fetch_assoc(mysqli_query($connection, $sql));
     $oldEmail = $res['email'];
     if (isset($_POST['save'])) {
         $id = $res['id'];
-        $name = get_safe_value($con, $_POST['name']);
-        $email = get_safe_value($con, $_POST['email']);
-        $phone = get_safe_value($con, $_POST['phone']);
-        $password = get_safe_value($con, $_POST['password']);		
+        $name = get_safe_value($connection, $_POST['name']);
+        $email = get_safe_value($connection, $_POST['email']);
+        $phone = get_safe_value($connection, $_POST['phone']);
+        $password = get_safe_value($connection, $_POST['password']);		
 				$password = password_hash($_POST['password'], PASSWORD_DEFAULT);		
         $query = "update users set name = '$name',phone = '$phone',email = '$email',password = '$password' where id =$id";
-        mysqli_query($con, $query);
+        mysqli_query($connection, $query);
         if ($email != $oldEmail) {
           $sql = "update `users` set status = 0 where email = '$username'";
           $data = "";
-          mysqli_query($con, $sql);
+          mysqli_query($connection, $sql);
             header('location:logout.php?Message=' . $msg);
         } else {
             $msg = urldecode("Profile Updated Successfully");

@@ -20,20 +20,20 @@ require('functions.php');
 
 
 if (isset($_GET['type']) && $_GET['type'] != '') {
-    $type = get_safe_value($con, $_GET['type']);
+    $type = get_safe_value($connection, $_GET['type']);
     if ($type == 'status') {
       $time = time();
       $time_out_in_seconds=300;
       $time_out=$time - $time_out_in_seconds;
-        $operation = get_safe_value($con, $_GET['operation']);
-        $id = get_safe_value($con, $_GET['id']);
+        $operation = get_safe_value($connection, $_GET['operation']);
+        $id = get_safe_value($connection, $_GET['id']);
         if ($operation == 'active') {
             $status = '1';
         } else {
             $status = '0';
         }
         $update_status_sql = "update `users` set status='$status' where id='$id'";
-        mysqli_query($con, $update_status_sql);
+        mysqli_query($connection, $update_status_sql);
     }
 }
 $res = "";
@@ -41,7 +41,7 @@ if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
 
     $sql = "select users.id, users.name,users.email,users.phone,users.status from `users`";
 
-    $res = mysqli_query($con, $sql);
+    $res = mysqli_query($connection, $sql);
 } else {
     header('location:login.php');
     die();

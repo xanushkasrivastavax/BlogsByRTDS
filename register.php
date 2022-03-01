@@ -16,7 +16,7 @@ if (isset($_POST['save'])) {
         if (!preg_match("/^[a-zA-Z-' ]*$/", $_POST["name"])) {
             $nameErr = "Only letters and white space allowed.<br/>";
         } else {
-            $name = get_safe_value($con, $_POST["name"]);
+            $name = get_safe_value($connection, $_POST["name"]);
         }
     }
     #Email Validation
@@ -26,8 +26,8 @@ if (isset($_POST['save'])) {
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
             $emailErr = "Invalid email format.<br/>";
         } else {
-            $email = get_safe_value($con, $_POST["email"]);
-            if (mysqli_num_rows(mysqli_query($con, "select * from users where email = '$email'")) > 0) {
+            $email = get_safe_value($connection, $_POST["email"]);
+            if (mysqli_num_rows(mysqli_query($connection, "select * from users where email = '$email'")) > 0) {
                 $emailErr = "Email Already Present.<br/>";
             }
         }
@@ -39,7 +39,7 @@ if (isset($_POST['save'])) {
         if (!preg_match('/^[0-9]{10}+$/', $_POST["phone"])) {
             $phoneErr = "Invalid Phone Number.<br/>";
         } else {
-            $phone = get_safe_value($con, $_POST["phone"]);
+            $phone = get_safe_value($connection, $_POST["phone"]);
         }
     }
     // #Address Validaion
@@ -68,7 +68,7 @@ if (isset($_POST['save'])) {
 
     //$count = mysqli_num_rows($res);
     //echo $count;
-    if (mysqli_query($con, $sql)) {
+    if (mysqli_query($connection, $sql)) {
     $msg = urldecode("Account Created ! You Can Login Now");
     header('location:login.php?Message=' . $msg);
 

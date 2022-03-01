@@ -4,19 +4,19 @@ if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
     if (isset($_GET["id"])) {
         $data = $_GET['id'];
         $blog_query = "select * from blogs where id= '$data' ";
-        $result = mysqli_fetch_assoc(mysqli_query($con, $blog_query));
+        $result = mysqli_fetch_assoc(mysqli_query($connection, $blog_query));
         $sql = "select * from comments where blog_id = '$data'";
-        $res = mysqli_query($con, $sql);
+        $res = mysqli_query($connection, $sql);
         if (isset($_POST['save'])) {
             $user_email = $_SESSION['USER_USERNAME'];
             $user_id_query = "select id from users where email= '$user_email' ";
-            $fetch_id = mysqli_fetch_assoc(mysqli_query($con, $user_id_query));
+            $fetch_id = mysqli_fetch_assoc(mysqli_query($connection, $user_id_query));
             $user_id = $fetch_id['id'];
-            $comment_rand=mysqli_fetch_array(mysqli_query($con, $sql));
+            $comment_rand=mysqli_fetch_array(mysqli_query($connection, $sql));
             $comment_date=$comment_rand['comment_date'];
             $comment = $_POST['comment_content'];
             $query = "insert into `comments`(user_id,blog_id,comment_content,comment_date) values('$user_id','$data','$comment',now())";
-            mysqli_query($con, $query);
+            mysqli_query($connection, $query);
             header('location:comments.php');
         }
     } else {
@@ -176,7 +176,7 @@ font-family: 'Roboto Serif', sans-serif;
                         <?php
                             $id = $rows['user_id'];
                             $name_query = "select name from users where id = '$id'";
-                            $name = mysqli_fetch_assoc(mysqli_query($con, $name_query));
+                            $name = mysqli_fetch_assoc(mysqli_query($connection, $name_query));
                             echo "<h5 class='media-heading'><b>" . $name['name'] . "</b><h5>";
                             // echo "<small>" .  $comment_date . "</small>" ;  
                             ?>

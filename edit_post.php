@@ -7,7 +7,7 @@ if(isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN']!=''){
     {
         $data = $_GET["body"];
         $id_query = "select blog_title ,blog_content from `blogs` where id='$data' ";
-        $res = mysqli_query($con,$id_query);
+        $res = mysqli_query($connection,$id_query);
         if(mysqli_num_rows($res)>0){
         $set = mysqli_fetch_assoc($res);
         $blog_title = $set['blog_title'];
@@ -17,17 +17,17 @@ if(isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN']!=''){
         $error = "There is some issue";
         }
         if(isset($_POST['save'])){
-            $name = get_safe_value($con, $_POST['name']);
-            $blog= get_safe_value($con, $_POST['blog']);
+            $name = get_safe_value($connection, $_POST['name']);
+            $blog= get_safe_value($connection, $_POST['blog']);
             $sql = "update `blogs` SET blog_title='$name' , blog_content='$blog'  WHERE id = '$data' ";
             mysqli_query($con,$sql);
-            header('location:myblog.php');
+            header('location:myblogs.php');
         }
         elseif(isset($_POST['delete'])){
             $sql = "DELETE FROM `blogs` WHERE id = '$data'";
-            mysqli_query($con,$sql);
+            mysqli_query($connection,$sql);
             $query = "Delete from `comments` where blog_id='$data' ";
-            mysqli_query($con,$query);
+            mysqli_query($connection,$query);
             header('location:myblogs.php');
         }
     }

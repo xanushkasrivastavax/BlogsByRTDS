@@ -1,4 +1,4 @@
 <?php 
 session_start();
-$con = mysqli_connect("localhost","root","","web");
+$connection = mysqli_connect("localhost","root","","web");
 ?>
