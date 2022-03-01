@@ -131,7 +131,7 @@ font-family: 'Roboto Serif', sans-serif;
             </p>
             <br>
             <div style="text-align: right;">
-                <a href="edit.php?body=<?php echo $row['id']; ?>" class="btn btn-primary ">Edit</a>
+                <a href="edit_post.php?body=<?php echo $row['id']; ?>" class="btn btn-primary ">Edit</a>
             </div>
             <div class="text-align">
                     <a href="comments.php?id=<?php echo $row['id'] ?>" style="text-decoration: none;color:black">

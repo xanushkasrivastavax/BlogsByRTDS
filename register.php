@@ -71,7 +71,7 @@ if (isset($_POST['save'])) {
     if (mysqli_query($con, $sql)) {
     $msg = urldecode("Account Created ! You Can Login Now");
     header('location:login.php?Message=' . $msg);
-    die();
+
     }
     }
     }

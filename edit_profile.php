@@ -2,8 +2,8 @@
 require('db.php');
 require('functions.php');
 if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
-    $data = $_SESSION['USER_USERNAME'];
-    $sql = "select * from `users` where email='$data' ";
+    $user_email = $_SESSION['USER_USERNAME'];
+    $sql = "select * from `users` where email='$user_email' ";
     $res = mysqli_fetch_assoc(mysqli_query($con, $sql));
     $oldEmail = $res['email'];
     if (isset($_POST['save'])) {

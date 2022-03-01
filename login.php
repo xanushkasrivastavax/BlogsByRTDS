@@ -2,39 +2,32 @@
 require('db.php');
 require('functions.php');
 $msg = " ";
-$username = "";
+$email = "";
 $password = "";
 if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
     header('location:index.php');
 }
 if (isset($_POST['submit'])) {
-    $username = get_safe_value($con, $_POST['name']);
+    $email = get_safe_value($con, $_POST['email']);
     $password = get_safe_value($con, $_POST['password']);
-    $sql = "select * from `users` where email = '$username'";
+    $sql = "select * from `users` where email = '$email'";
     $res = mysqli_query($con, $sql);
     $count = mysqli_num_rows($res);
-    if ($count > 0) {
-        $cnt = 0;
+  
         while ($row = mysqli_fetch_assoc($res)) {
             if (password_verify($password, $row['password'])) {
-                $cnt = 1;
                 $_SESSION['USER_LOGIN'] = 'yes';
-                $_SESSION['USER_USERNAME'] = $username;
-                $sql = "update `users` set status = '1' where email = '$username'";
+                $_SESSION['USER_USERNAME'] = $email;
+                $sql = "update `users` set status = '1' where email = '$email'";
                 mysqli_query($con, $sql);
                 header('location:index.php');
-                die();
             }
-        }
-        if ($cnt === 0) {
-            $msg = "Password is Incorrect";
-        }
-    } else {
-        $msg = "Please Enter Correct login details <br> If you are new than Register Yourself First!";
+       
+   else {
+        $msg = "Please Enter Correct login details ";
     }
-} elseif (isset($_POST['back'])) {
-    header('location:index.php');
-}
+  }
+} 
 
 ?>
 <!DOCTYPE html>
@@ -183,8 +176,8 @@ a {
     <form method="post">
         <div class="container">
         <div class="form-group first">
-            <label><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="name" class="form-control" value="<?php echo $username ?>" required>
+            <label><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" class="form-control" value="<?php echo $email ?>" required>
                                                   </div>
                                                   <div class="form-group last mb-4">                                      
             <label><b>Password</b></label>
