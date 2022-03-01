@@ -13,6 +13,7 @@ if (isset($_POST['submit'])) {
     $sql = "select * from `users` where email = '$email'";
     $res = mysqli_query($con, $sql);
     $count = mysqli_num_rows($res);
+    // echo "$res";
   
         while ($row = mysqli_fetch_assoc($res)) {
             if (password_verify($password, $row['password'])) {
@@ -203,7 +204,7 @@ a {
                 </style>
 
         <div class="d-block text-left mt-3" >
-            <span style="padding-left: 23%;">Register Yourself <a href="registration.php">sign up</a></span>
+            <span style="padding-left: 23%;">Register Yourself <a href="register.php">sign up</a></span>
             <span class="psw"><a href="index.php">Back?</a></span>
         </div>
     </form>

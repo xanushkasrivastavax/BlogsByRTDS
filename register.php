@@ -300,7 +300,7 @@ a {
                 }
                 </style>
                 <div class="d-flex mb-5">
-                <button type="submit" class="registerbtn" name="save">Register</button> </div>     
+                <button type="submit" class="btn btn-primary" name="save">Register</button> </div>     
 
               
                 <div class="container signin">
