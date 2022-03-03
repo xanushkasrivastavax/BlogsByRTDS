@@ -8,25 +8,25 @@ if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
 }
 ?>
 <?php
-// require('functions.php');
-// global $connection;
-// $session = session_id();
-// $time = time();
-// $time_out_in_seconds = 300;
-// $time_out = $time - $time_out_in_seconds;
-// $sql= "SELECT * FROM users_online WHERE session = '$session'";
-// $send_query = mysqli_query($connection, $sql);
-// // die("QUERY FAILED". $send_query);
-// $count = mysqli_num_rows($send_query);
-// if($count == NULL)
-// {
-//   mysqli_query($connection,"INSERT INTO users_online(session,time) VALUES('$session','$time')");
-// }
-// else{
-//   mysqli_query($connection,"UPDATE users_online SET time ='$time' WHERE $session='$session'");
-// }
-// $users_online_query =  mysqli_query($connection,"SELECT * FROM users_online WHERE time >'$time_out'");
-// $count_user = mysqli_num_rows($users_online_query);
+require('functions.php');
+global $connection;
+$session = session_id();
+$time = time();
+$time_out_in_seconds = 300;
+$time_out = $time - $time_out_in_seconds;
+$sql= "SELECT * FROM users_online WHERE session = '$session'";
+$send_query = mysqli_query($connection, $sql);
+// die("QUERY FAILED". $send_query);
+$count = mysqli_num_rows($send_query);
+if($count == NULL)
+{
+  mysqli_query($connection,"INSERT INTO users_online(session,time) VALUES('$session','$time')");
+}
+else{
+  mysqli_query($connection,"UPDATE users_online SET time ='$time' WHERE $session='$session'");
+}
+$users_online_query =  mysqli_query($connection,"SELECT * FROM users_online WHERE time >'$time_out'");
+$count_user = mysqli_num_rows($users_online_query);
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
