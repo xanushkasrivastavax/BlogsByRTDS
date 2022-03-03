@@ -2,8 +2,8 @@
 require('db.php');
 $msg = "";
 if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
-    $data = $_SESSION['USER_USERNAME'];
-    $id_query = "select id from `users` where email='$data' ";
+    $email = $_SESSION['USER_USERNAME'];
+    $id_query = "select id from `users` where email='$email' ";
     $res = mysqli_query($connection, $id_query);
     $set = mysqli_fetch_assoc($res);
     $id = $set['id'];

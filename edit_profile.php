@@ -11,8 +11,8 @@ if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] != '') {
         $name = get_safe_value($connection, $_POST['name']);
         $email = get_safe_value($connection, $_POST['email']);
         $phone = get_safe_value($connection, $_POST['phone']);
-        $password = get_safe_value($connection, $_POST['password']);		
-				$password = password_hash($_POST['password'], PASSWORD_DEFAULT);		
+        // $password = get_safe_value($connection, $_POST['password']);		
+				// $password = password_hash($_POST['password'], PASSWORD_DEFAULT);		
         $query = "update users set name = '$name',phone = '$phone',email = '$email',password = '$password' where id =$id";
         mysqli_query($connection, $query);
         if ($email != $oldEmail) {
@@ -231,10 +231,10 @@ font-family: 'Roboto Serif', sans-serif;
             <label><b>Phone</b></label>
             <input type="text" name="phone" class="form-control" value="<?php echo $res['phone'] ?>" required>
       </div>
-			<div class="form-group last mb-4">
+			<!-- <div class="form-group last mb-4">
             <label><b>Password</b></label>
             <input type="password" name="password" class="form-control" value="<?php echo $res['password'] ?>" required>
-      </div>
+      </div> -->
             
 
             <button type="submit" name="save" class="btn btn-light btn-sm">Edit</button>
