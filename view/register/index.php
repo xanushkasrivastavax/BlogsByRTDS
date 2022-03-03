@@ -1,82 +1,4 @@
-<?php
-require('db.php');
-require('functions.php');
-$msg = "";
-$name = "";
-$email = "";
-$phone = "";
-$address = "";
-$password = "";
-$nameErr = $emailErr = $phoneErr = $addressErr = $passwordErr = "";
-if (isset($_POST['save'])) {
-    #Name Validation
-    if (empty($_POST["name"])) {
-        $nameErr = "Name is required.<br/>";
-    } else {
-        if (!preg_match("/^[a-zA-Z-' ]*$/", $_POST["name"])) {
-            $nameErr = "Only letters and white space allowed.<br/>";
-        } else {
-            $name = get_safe_value($con, $_POST["name"]);
-        }
-    }
-    #Email Validation
-    if (empty($_POST["email"])) {
-        $emailErr = "Email is required.<br/>";
-    } else {
-        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-            $emailErr = "Invalid email format.<br/>";
-        } else {
-            $email = get_safe_value($con, $_POST["email"]);
-            if (mysqli_num_rows(mysqli_query($con, "select * from users where email = '$email'")) > 0) {
-                $emailErr = "Email Already Present.<br/>";
-            }
-        }
-    }
-    #Phone Number Validation
-    if (empty($_POST["phone"])) {
-        $phoneErr = "Phone Number is required.<br/>";
-    } else {
-        if (!preg_match('/^[0-9]{10}+$/', $_POST["phone"])) {
-            $phoneErr = "Invalid Phone Number.<br/>";
-        } else {
-            $phone = get_safe_value($con, $_POST["phone"]);
-        }
-    }
-    // #Address Validaion
-    // if (empty($_POST["address"])) {
-    //     $addressErr = "Address is required.<br/>";
-    // } else {
-    //     $address = get_safe_value($con, $_POST["address"]);
-    // }
-    #password validation
-    if (empty($_POST["password"])) {
-        $phoneErr = "Password is required.<br/>";
-    } else {
-        if (strlen($_POST["password"]) <= '8') {
-            $passwordErr = "Your Password Must Contain At Least 8 Characters!.<br/>";
-        } else {
-    //$password = get_safe_value($con , $_POST['password']);
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    }
-    }
-    if ($nameErr == '' && $emailErr == '' && $phoneErr == '' && $addressErr == '' && $passwordErr == '') {
-    $sql = "insert into `users` (`name`, `email`, `phone`, `password`,`status`) VALUES ('$name', '$email',
-    '$phone', '$password','0')";
-    //$res = mysqli_query($con, $sql);
-    //echo $res;
-    #$count = mysqli_fetch_assoc($res);
 
-    //$count = mysqli_num_rows($res);
-    //echo $count;
-    if (mysqli_query($con, $sql)) {
-    $msg = urldecode("Account Created ! You Can Login Now");
-    header('location:login.php?Message=' . $msg);
-    die();
-    }
-    }
-    }
- 
-    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -197,9 +119,6 @@ a {
 				margin-bottom: 0;
 				color: #000000;
 			}
-			&.focus {
-				background: $white;
-			}
 			&.field--not-empty {
 				label {
 					margin-top: -25px;
@@ -244,41 +163,41 @@ a {
     <div class="container">
       <div class="row">
         <div class="col-md-6 order-md-2">
-          <img src="assets/img/bg.png" alt="Image" class="img-fluid">
+          <img src="../../assets/img/bg.png" alt="Image" class="img-fluid">
         </div>
         <div class="col-md-6 contents">
           <div class="row justify-content-center">
             <div class="col-md-8">
               <div class="mb-4">
-              <img class="mb-4" src="assets/img/rtdslogo.png" alt="" width="72" height="57">
+              <img class="mb-4" src="../../assets/img/rtdslogo.png" alt="" width="72" height="57">
               <h3>Register to <strong>Blogs by RTDS</strong></h3>
               <p class="mb-4">Write stories, look at stories, talk about stuff, find your people.</p>
             </div>
-            <form action="" method="post">
+            <form method="post" action="../../controller/register.php">
             <div class="form-group first">
                 <label for="name"><b>NAME</b>
-                    <p id="fname"><?php echo $nameErr; ?></p>
+                    <p id="fname"></p>
                 </label>
-                <input type="text" placeholder="Enter Your Name" class="form-control" name="name" value="<?php echo $name ?>" required>
+                <input type="text" placeholder="Enter Your Name" class="form-control" name="name" required>
                 </div>
                 <div class="form-group first">
                 <label><b>EMAIL</b>
-                    <p id="femail"><?php echo $emailErr; ?></p>
+                    <p id="femail"></p>
                 </label>
-                <input type="text" placeholder="Enter Email as Username" class="form-control" name="email" value="<?php echo $email ?>"
+                <input type="text" placeholder="Enter Email as Username" class="form-control" name="email" 
                     required>
 </div>
                 <div class="form-group first">
                   <label><b>PHONE NUMBER</b>
-                    <p id="fphone"><?php echo $phoneErr; ?></P>
+                    <p id="fphone"></p>
                 </label>
-                <input type="text" placeholder="Enter Phone Number" name="phone" class="form-control" value="<?php echo $phone ?>" required>
+                <input type="text" placeholder="Enter Phone Number" name="phone" class="form-control"  required>
 </div>
  
             
 <div class="form-group last mb-4">
                 <label><b>PASSWORD</b>
-                    <p id="psw"><?php echo $passwordErr; ?>
+                    <p id="psw">
                     <p>
                 </label>
                 <input type="password" placeholder="Enter Password" class="form-control" name="password" required>
@@ -300,11 +219,11 @@ a {
                 }
                 </style>
                 <div class="d-flex mb-5">
-                <button type="submit" class="registerbtn" name="save">Register</button> </div>     
+                <button type="submit" class="btn btn-primary" name="save">Register</button> </div>     
 
               
                 <div class="container signin">
-                <p>Already have an account? <a href="login.php">Sign in</a>.</p>
+                <p>Already have an account? <a href="#">Sign in</a>.</p>
             </div>
               
             </form>
