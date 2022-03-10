@@ -60,19 +60,35 @@ if (isset($_POST['save'])) {
     }
     }
     if ($nameErr == '' && $emailErr == '' && $phoneErr == '' && $addressErr == '' && $passwordErr == '') {
-    $sql = "insert into `users` (`name`, `email`, `phone`, `password`,`status`) VALUES ('$name', '$email',
-    '$phone', '$password','0')";
+      try {
+        //Implementing transactions in my users table
+        mysqli_begin_transaction($connection);
+        $sql = "insert into `users` (`name`, `email`, `phone`, `password`,`status`) VALUES ('$name', '$email',
+        '$phone', '$password','0')";
+        mysqli_query($connection, $sql);
+        mysqli_commit($connection;
+        $msg = urldecode("Account has been successfully created");
+    } catch (Exception $e) {
+        //Implementing Roll back command in transaction 
+        $msg = urldecode("Some Error occured, try again");
+        mysqli_rollback($con);
+    }
+    header('location:login.php?Message=' . $msg);
+  
+   
+    
+
     //$res = mysqli_query($con, $sql);
     //echo $res;
     #$count = mysqli_fetch_assoc($res);
 
     //$count = mysqli_num_rows($res);
     //echo $count;
-    if (mysqli_query($connection, $sql)) {
-    $msg = urldecode("Account Created ! You Can Login Now");
-    header('location:login.php?Message=' . $msg);
+    // if (mysqli_query($connection, $sql)) {
+    // $msg = urldecode("Account Created ! You Can Login Now");
+    // header('location:login.php?Message=' . $msg);
 
-    }
+    // }
     }
     }
  
